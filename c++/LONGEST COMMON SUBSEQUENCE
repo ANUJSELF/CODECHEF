@@ -1,0 +1,45 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Problem
+For a given two words x = x1x2...xn and y = y1y2...ym find the longest common subsequence, i.e. z = z1z2...zk such that every two consecutive elements of z are equal to some two elements of x: xa, xb, and y: yc, yd where a < b and c < d. Assume, that elements of words are letters 'a' - 'z' and m,n <= 1000.
+
+Input
+t [the number of test cases <= 1000]
+n x
+m y
+...
+
+Output
+case 1 Y [or N when no answer to this case]
+d [the length of the lcs]
+zj p q [position of zj in x and in y, respectively]
+...
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int solve(string X,string Y , int m , int n){
+    if (m == 0 || n == 0){
+        return 0;
+    }
+    if (X[m-1]==Y[n-1]){
+    return 1 + solve( X , Y , m-1 , n-1);}
+    else {
+    return max(solve( X , Y , m-1 , n),solve( X , Y , m , n-1));}
+}
+int main() {
+    
+	// your code goes here
+	string X , Y;
+	cin >> X ;
+	cin >> Y ;
+	int m = X.size();
+	int n = Y.size();
+	cout << "LONGEST COMMON SUBSEQUENCE IS " <<  solve( X , Y , m , n) ;
+	
+
+	return 0;
+}
